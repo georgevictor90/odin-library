@@ -69,17 +69,54 @@ function addBookToLibrary() {
 
 
 
+// const createEntry = (e) => {
+//   e.preventDefault();
+//   if (pages.value.includes('-') || pages.value === '' || author.value === '' || title.value === '' || readStatus.value === '') {
+//     return
+//   } else {
+//     book = new Book(author.value, title.value, pages.value, readStatus.value);
+//     const entry1 = document.createElement('div');
+//     entry1.innerHTML = book.title + ', <br>by ' + book.author;
+//     entry1.classList.add('grid-item');
+//     gridCont.appendChild(entry1);
+//     myLibrary.push(book);
+//     document.forms[0].reset();
+//   }
+//   modal.style.display = "none";
+//   console.table(myLibrary);
+// }
+
+const tableCont = document.querySelector('.table-container');
+const table = document.querySelector('.table');
+
 const createEntry = (e) => {
   e.preventDefault();
   if (pages.value.includes('-') || pages.value === '' || author.value === '' || title.value === '' || readStatus.value === '') {
     return
   } else {
     book = new Book(author.value, title.value, pages.value, readStatus.value);
-    const entry1 = document.createElement('div');
-    entry1.innerHTML = book.title + ', <br>by ' + book.author;
-    entry1.classList.add('grid-item');
-    gridCont.appendChild(entry1);
+    const entry = document.createElement('tr');
+
+    const titleCell = document.createElement('td');
+    titleCell.textContent = title.value;
+    entry.appendChild(titleCell);
+
+    const authorCell = document.createElement('td');
+    authorCell.textContent = author.value;
+    entry.appendChild(authorCell);
+
+    const pagesCell = document.createElement('td');
+    pagesCell.textContent = pages.value;
+    entry.appendChild(pagesCell);
+
+    const statusCell = document.createElement('td');
+    statusCell.textContent = readStatus.value;
+    entry.appendChild(statusCell);
+
+    table.appendChild(entry);
+
     myLibrary.push(book);
+    
     document.forms[0].reset();
   }
   modal.style.display = "none";
