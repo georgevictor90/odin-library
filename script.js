@@ -110,7 +110,12 @@ const createEntry = (e) => {
     entry.appendChild(pagesCell);
 
     const statusCell = document.createElement('td');
-    statusCell.textContent = readStatus.value;
+    entry.appendChild(statusCell);
+    const statusBtn = document.createElement('button');
+    statusBtn.textContent = readStatus.value;
+    statusCell.appendChild(statusBtn);
+    
+
     entry.appendChild(statusCell);
 
     table.appendChild(entry);
