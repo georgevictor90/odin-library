@@ -97,6 +97,9 @@ const createEntry = (e) => {
     book = new Book(author.value, title.value, pages.value, readStatus.value);
     const entry = document.createElement('tr');
 
+    const nrCell = document.createElement('td');
+    entry.appendChild(nrCell);
+
     const titleCell = document.createElement('td');
     titleCell.textContent = title.value;
     entry.appendChild(titleCell);
@@ -114,18 +117,17 @@ const createEntry = (e) => {
     const statusBtn = document.createElement('button');
     statusBtn.textContent = readStatus.value;
     statusCell.appendChild(statusBtn);
-    
-
-    entry.appendChild(statusCell);
+  
 
     table.appendChild(entry);
 
     myLibrary.push(book);
+
+    nrCell.textContent = myLibrary.indexOf(book) + 1;
     
     document.forms[0].reset();
   }
   modal.style.display = "none";
-  console.table(myLibrary);
 }
 
 submitBtn.addEventListener('click', createEntry);
