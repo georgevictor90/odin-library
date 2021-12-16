@@ -104,8 +104,14 @@ function createEntry(e) {
     const statusCell = document.createElement('td');
     entry.appendChild(statusCell);
   
-    const statusBtn = document.createElement('button');
+    const statusBtn = document.createElement('div');
     statusBtn.textContent = readStatus.value;
+    if (readStatus.value === 'read') {
+      statusBtn.classList.add('green')
+    }
+    if (readStatus.value === 'not read') {
+      statusBtn.classList.add('red')
+    }
     statusBtn.setAttribute('id', objectId);
     statusCell.appendChild(statusBtn);
     table.appendChild(entry);
@@ -120,24 +126,23 @@ function createEntry(e) {
 table.addEventListener('click', (e) => {
   let buttonId = Number(e.target.id);
 
-  // change the text content of the button
-
+  // change the text content and class of the button
   if (e.target.textContent === 'read') {
    e.target.textContent = 'not read';
+   e.target.classList.remove('green');
+   e.target.classList.add('red');
 
   } else if (e.target.textContent === 'not read') {
     e.target.textContent = 'read';
+    e.target.classList.remove('red');
+    e.target.classList.add('green');
     
   }
-
   // find object with id value of buttonId in the myLibrary array
   const index = myLibrary.findIndex(item => item.id == buttonId);
-  console.log('Index is: ' + index);
-
 
   // change that object's readStatus to the text content of the button
   myLibrary[index].readStatus = e.target.textContent;
-  
 })
 
 
