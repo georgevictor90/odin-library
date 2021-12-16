@@ -214,7 +214,7 @@ footer {
 }
 
 
-button {
+#newBookBtn {
   background-color: var(--prussianblue);
   border: 2px solid var(--honeydew);
   border-radius: 30px;
@@ -234,12 +234,12 @@ button {
   touch-action: manipulation;
 }
 
-button:hover {
+#newBookBtn:hover {
   background-color: var(--red);
   box-shadow: var(--prussianblue) 4px 4px 0 0;
 }
 
-button:active {
+#newBookBtn:active {
   box-shadow: #422800 2px 2px 0 0;
   transform: translate(2px, 2px);
 }
@@ -249,4 +249,22 @@ button:active {
     min-width: 120px;
     padding: 0 25px;
   }
+}
+
+td>div {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  cursor: pointer;
+  font-family: monospace ;
+  font-weight: bold;
+}
+
+.red {
+  background-color: var(--red);
+  
+}
+
+.green {
+  background-color: #519259;
 }
