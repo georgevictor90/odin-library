@@ -2,33 +2,18 @@ const modal = document.getElementById('modal');
 const newBookBtn = document.querySelector('.new-book');
 const span = document.getElementsByClassName('close')[0];
 const formContainer = document.querySelector('.form-container');
-const bookList = document.querySelector('.book-list');
 const author =  document.getElementById('author');
 const title = document.getElementById('title');
 const pages = document.getElementById('pages'); 
 const readStatus = document.getElementById('readStatus'); 
 const submitBtn = document.getElementById('submitBtn');
-const gridCont = document.querySelector('.grid-container');
-
-
-// When the user clicks on the button, open the modal
-newBookBtn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(e) {
-  if (e.target == modal) {
-    modal.style.display = "none";
-  }
-}
+const tableCont = document.querySelector('.table-container');
+const table = document.querySelector('.table');
 
 let myLibrary = [];
+
+
+//Book object constructor
 
 function Book(author, title, pages, readStatus) {
   this.id = title;
@@ -38,99 +23,126 @@ function Book(author, title, pages, readStatus) {
   this.readStatus = readStatus;
 }
 
+
+//Book prototype function
+
 Book.prototype.changeStatus = function() {
-  if (this.readStatus === 'Not read yet') {
-    this.readStatus = 'Read';
+  console.log(readStatus.value);
+  if (readStatus.value === 'not read') {
+    readStatus.value = 'read';
   } else {
-    this.readStatus = 'Not read yet';
+    readStatus.value = 'not read';
   }
-  //then also update the display;
+  console.log(readStatus.value);
 }
 
-function addBookToLibrary() {
 
+//Open the modal on user click
+
+newBookBtn.onclick = function() {
+  modal.style.display = "block";
 }
 
-// const createEntry = (e) => {
-//   e.preventDefault();
-//   if (pages.value.includes('-') || pages.value === '' || author.value === '' || title.value === '' || readStatus.value === '') {
-//     return
-//   } else {
-//     book = new Book(author.value, title.value, pages.value, readStatus.value);
-//     const entry1 = document.createElement('li');
-//     entry1.innerHTML = book.title + ', <br>by ' + book.author;
-//     bookList.appendChild(entry1);
-//     myLibrary.push(book);
-//     document.forms[0].reset();
-//   }
-//   modal.style.display = "none";
-//   console.table(myLibrary);
-// }
+
+// When the user clicks on <span> (x), close the modal
+
+span.addEventListener('click', hideModal);
 
 
+// When the user clicks anywhere outside of the modal, close it
 
-// const createEntry = (e) => {
-//   e.preventDefault();
-//   if (pages.value.includes('-') || pages.value === '' || author.value === '' || title.value === '' || readStatus.value === '') {
-//     return
-//   } else {
-//     book = new Book(author.value, title.value, pages.value, readStatus.value);
-//     const entry1 = document.createElement('div');
-//     entry1.innerHTML = book.title + ', <br>by ' + book.author;
-//     entry1.classList.add('grid-item');
-//     gridCont.appendChild(entry1);
-//     myLibrary.push(book);
-//     document.forms[0].reset();
-//   }
-//   modal.style.display = "none";
-//   console.table(myLibrary);
-// }
+window.onclick = function(e) {
+  if (e.target == modal) hideModal(); 
+}
 
-const tableCont = document.querySelector('.table-container');
-const table = document.querySelector('.table');
 
-const createEntry = (e) => {
-  e.preventDefault();
-  if (pages.value.includes('-') || pages.value === '' || author.value === '' || title.value === '' || readStatus.value === '') {
-    return
-  } else {
-    book = new Book(author.value, title.value, pages.value, readStatus.value);
-    const entry = document.createElement('tr');
+//Create entry when user clicks "Submit"
 
-    const nrCell = document.createElement('td');
-    entry.appendChild(nrCell);
+submitBtn.addEventListener('click', createEntry);
 
-    const titleCell = document.createElement('td');
-    titleCell.textContent = title.value;
-    entry.appendChild(titleCell);
 
-    const authorCell = document.createElement('td');
-    authorCell.textContent = author.value;
-    entry.appendChild(authorCell);
+function resetForm() {
+  document.forms[0].reset();
+}
 
-    const pagesCell = document.createElement('td');
-    pagesCell.textContent = pages.value;
-    entry.appendChild(pagesCell);
-
-    const statusCell = document.createElement('td');
-    entry.appendChild(statusCell);
-    const statusBtn = document.createElement('button');
-    statusBtn.textContent = readStatus.value;
-    statusCell.appendChild(statusBtn);
-  
-
-    table.appendChild(entry);
-
-    myLibrary.push(book);
-
-    nrCell.textContent = myLibrary.indexOf(book) + 1;
-    
-    document.forms[0].reset();
-  }
+function hideModal() {
   modal.style.display = "none";
 }
 
-submitBtn.addEventListener('click', createEntry);
+let id = 0;
+
+let book = {};
+
+function createEntry(e) {
+  e.preventDefault();
+  if (pages.value.includes('-') || pages.value === '' || author.value === '' || title.value === '' || readStatus.value === '') return;
+  else {
+    book = new Book(author.value, title.value, pages.value, readStatus.value);
+    myLibrary.push(book);
+    
+    const entry = document.createElement('tr'); 
+
+    const nrCell = document.createElement('td');
+    nrCell.textContent = myLibrary.indexOf(book) + 1;
+
+    objectId = Number(nrCell.textContent);
+
+    entry.appendChild(nrCell);
+  
+    const titleCell = document.createElement('td');
+    titleCell.textContent = title.value;
+    entry.appendChild(titleCell);
+  
+    const authorCell = document.createElement('td');
+    authorCell.textContent = author.value;
+    entry.appendChild(authorCell);
+  
+    const pagesCell = document.createElement('td');
+    pagesCell.textContent = pages.value;
+    entry.appendChild(pagesCell);
+  
+    const statusCell = document.createElement('td');
+    entry.appendChild(statusCell);
+  
+    const statusBtn = document.createElement('button');
+    statusBtn.textContent = readStatus.value;
+    statusBtn.setAttribute('id', objectId);
+    statusCell.appendChild(statusBtn);
+    table.appendChild(entry);
+    
+    resetForm();
+  }
+  myLibrary[myLibrary.length - 1].id = objectId;
+  hideModal();
+}
+
+
+table.addEventListener('click', (e) => {
+  let buttonId = Number(e.target.id);
+
+  // change the text content of the button
+
+  if (e.target.textContent === 'read') {
+   e.target.textContent = 'not read';
+
+  } else if (e.target.textContent === 'not read') {
+    e.target.textContent = 'read';
+    
+  }
+
+  // find object with id value of buttonId in the myLibrary array
+  const index = myLibrary.findIndex(item => item.id == buttonId);
+  console.log('Index is: ' + index);
+
+
+  // change that object's readStatus to the text content of the button
+  myLibrary[index].readStatus = e.target.textContent;
+  
+})
+
+
+
+
 
 
 
