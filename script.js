@@ -81,6 +81,14 @@ function createEntry(e) {
     myLibrary.push(book);
     
     const entry = document.createElement('tr'); 
+    const removeBtnCell = document.createElement('td');
+    entry.appendChild(removeBtnCell);
+
+    const removeBtn = document.createElement('i');
+    removeBtn.classList.add('far');
+    removeBtn.classList.add('fa-times-circle');
+    removeBtnCell.appendChild(removeBtn);
+
 
     const nrCell = document.createElement('td');
     nrCell.textContent = myLibrary.indexOf(book) + 1;
@@ -114,6 +122,9 @@ function createEntry(e) {
     }
     statusBtn.setAttribute('id', objectId);
     statusCell.appendChild(statusBtn);
+
+    
+
     table.appendChild(entry);
     
     resetForm();
@@ -137,7 +148,7 @@ table.addEventListener('click', (e) => {
     e.target.classList.remove('red');
     e.target.classList.add('green');
     
-  }
+  } else return
   // find object with id value of buttonId in the myLibrary array
   const index = myLibrary.findIndex(item => item.id == buttonId);
 
