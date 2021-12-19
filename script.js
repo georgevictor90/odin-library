@@ -136,24 +136,28 @@ function createEntry(e) {
 
 table.addEventListener('click', (e) => {
   let buttonId = Number(e.target.id);
+  console.log(e);
+  // find object with id value of buttonId in the myLibrary array
+  const index = myLibrary.findIndex(item => item.id == buttonId);
+  
 
   // change the text content and class of the button
-  if (e.target.textContent === 'read') {
+  if (e.target.className === 'far fa-times-circle') {
+    myLibrary.splice(index-1,1);
+    e.target.closest('tr').remove();
+  } else if (e.target.textContent === 'read') {
    e.target.textContent = 'not read';
    e.target.classList.remove('green');
    e.target.classList.add('red');
+   myLibrary[index].readStatus = e.target.textContent;
 
   } else if (e.target.textContent === 'not read') {
     e.target.textContent = 'read';
     e.target.classList.remove('red');
     e.target.classList.add('green');
+    myLibrary[index].readStatus = e.target.textContent;
     
   } else return
-  // find object with id value of buttonId in the myLibrary array
-  const index = myLibrary.findIndex(item => item.id == buttonId);
-
-  // change that object's readStatus to the text content of the button
-  myLibrary[index].readStatus = e.target.textContent;
 })
 
 
