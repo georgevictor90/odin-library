@@ -49,6 +49,7 @@ h1 {
 
 .main-container {
   display: flex;
+  width: 80%;
   margin-top: 100px;
   gap: 50px;
   align-items: flex-start;
@@ -64,7 +65,7 @@ h1 {
 .left {
   padding: 50px 10px;
   background-color: var(--prussianblue);
-  width: 800px;
+  width: 80%;
   height: fit-content;
   border-radius: 2%;
 }
@@ -74,7 +75,7 @@ h1 {
   justify-content: center;
   position: sticky;
   top: 365px;
-  width: 300px;
+  width: 20%;
   height: 200px;
   background-color: var(--powderblue);
   
@@ -285,4 +286,50 @@ td>div {
 
 .green {
   background-color: #519259;
+}
+
+@media screen and (max-width: 800px) {
+	.main-container {
+    width: 95%;
+    gap: 10px;
+    margin-top: 60px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
+  .book-icon{
+    font-size: 1.5rem;
+  }
+	.main-container {
+    flex-direction: column-reverse;
+    width: 95%;
+    gap: 10px;
+    margin-top: 60px;
+    margin-bottom: 50px;
+  }
+  .left {
+    width: 100%;
+    padding: 50px 0px;
+    border-radius: 10px;
+  }
+  .right {
+    width: 100%;
+    height: fit-content;
+    background-color: transparent;
+    top: 0px;
+    margin: auto;
+    position: relative;
+  }
+  .table {
+    width: 95%;
+    font-size: 0.8rem;
+  }
+  #newBookBtn {
+    width: 100%;
+    border-radius: 10px;
+  }
 }
