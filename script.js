@@ -27,13 +27,11 @@ function Book(author, title, pages, readStatus) {
 //Book prototype function
 
 Book.prototype.changeStatus = function() {
-  console.log(readStatus.value);
   if (readStatus.value === 'not read') {
     readStatus.value = 'read';
   } else {
     readStatus.value = 'not read';
   }
-  console.log(readStatus.value);
 }
 
 
@@ -79,6 +77,7 @@ function createEntry(e) {
   else {
     book = new Book(author.value, title.value, pages.value, readStatus.value);
     myLibrary.push(book);
+    book.id = myLibrary.indexOf(book) + 1;
     
     const entry = document.createElement('tr'); 
     const removeBtnCell = document.createElement('td');
@@ -87,13 +86,16 @@ function createEntry(e) {
     const removeBtn = document.createElement('i');
     removeBtn.classList.add('far');
     removeBtn.classList.add('fa-times-circle');
+    removeBtn.setAttribute('data-id', book.id);
     removeBtnCell.appendChild(removeBtn);
+    
 
 
     const nrCell = document.createElement('td');
     nrCell.textContent = myLibrary.indexOf(book) + 1;
+    nrCell.classList.add('numberCell');
 
-    objectId = Number(nrCell.textContent);
+    objectId = Number(book.id);
 
     entry.appendChild(nrCell);
   
@@ -114,13 +116,14 @@ function createEntry(e) {
   
     const statusBtn = document.createElement('div');
     statusBtn.textContent = readStatus.value;
+    statusBtn.classList.add('statusButton');
     if (readStatus.value === 'read') {
       statusBtn.classList.add('green')
     }
     if (readStatus.value === 'not read') {
       statusBtn.classList.add('red')
     }
-    statusBtn.setAttribute('id', objectId);
+    statusBtn.setAttribute('id', book.id);
     statusCell.appendChild(statusBtn);
 
     
@@ -135,23 +138,33 @@ function createEntry(e) {
 
 
 table.addEventListener('click', (e) => {
-  let buttonId = Number(e.target.id);
-  console.log(e);
-  // find object with id value of buttonId in the myLibrary array
-  const index = myLibrary.findIndex(item => item.id == buttonId);
   
+  let statusBtnId = e.target.id;
+  let removeBtnId = e.target.dataset.id;
+  let index;
+ 
 
   // change the text content and class of the button
   if (e.target.className === 'far fa-times-circle') {
-    myLibrary.splice(index-1,1);
+    index = myLibrary.findIndex(item => item.id == removeBtnId);
+    myLibrary.splice(index, 1);
     e.target.closest('tr').remove();
+    reassignBookId();
+    reassignRemoveBtnId();
+    reassignStatusBtnId();
+    updateNrCell();
+
   } else if (e.target.textContent === 'read') {
+    statusBtnId = e.target.id;
+    index = myLibrary.findIndex(item => item.id == statusBtnId);
    e.target.textContent = 'not read';
    e.target.classList.remove('green');
    e.target.classList.add('red');
    myLibrary[index].readStatus = e.target.textContent;
 
   } else if (e.target.textContent === 'not read') {
+    statusBtnId = e.target.id;
+    index = myLibrary.findIndex(item => item.id == statusBtnId);
     e.target.textContent = 'read';
     e.target.classList.remove('red');
     e.target.classList.add('green');
@@ -161,9 +174,31 @@ table.addEventListener('click', (e) => {
 })
 
 
+function reassignBookId() {
+  for (let i = 0; i < myLibrary.length; i++) {
+    myLibrary[i].id = i + 1;
+  }
+}
+
+function reassignRemoveBtnId() {
+  let removeButtons = Array.from(document.getElementsByClassName('far'));
+  for (let i = 0; i < removeButtons.length; i++) {
+    removeButtons[i].dataset.id = i + 1;
+  }
+}
+
+function reassignStatusBtnId() {
+  let statusButtons = Array.from(table.getElementsByClassName('statusButton'));
+  for (let i = 0; i < statusButtons.length; i++) {
+    statusButtons[i].id = i + 1;
+  }
+}
 
 
-
-
-
+function updateNrCell() {
+  let nrCells = Array.from(table.getElementsByClassName('numberCell'));
+  for (let i = 0; i < nrCells.length; i++) {
+    nrCells[i].textContent = i + 1;
+  }
+}
 
