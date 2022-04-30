@@ -13,24 +13,26 @@ const table = document.querySelector('.table');
 let myLibrary = [];
 
 
-//Book object constructor
+//Book object class
 
-function Book(author, title, pages, readStatus) {
-  this.id = title;
-  this.author =  author;
-  this.title = title;
-  this.pages = pages;
-  this.readStatus = readStatus;
-}
+class Book {
+  constructor(author, title, pages, bookStatus) {
+    this.id = title;
+    this.author =  author;
+    this.title = title;
+    this.pages = pages;
+    this.bookStatus = bookStatus;
+  }
+  changeStatus() {
+    if (this.bookStatus === 'not read') {
+      this.bookStatus = 'read';
+    } else {
+      this.bookStatus = 'not read';
+    }
+  }
 
-
-//Book prototype function
-
-Book.prototype.changeStatus = function() {
-  if (readStatus.value === 'not read') {
-    readStatus.value = 'read';
-  } else {
-    readStatus.value = 'not read';
+  getReadStatus() {
+    return this.bookStatus;
   }
 }
 
@@ -69,7 +71,7 @@ function hideModal() {
 
 let id = 0;
 
-let book = {};
+// let book = {};
 
 function createEntry(e) {
   e.preventDefault();
