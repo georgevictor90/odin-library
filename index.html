@@ -1,87 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Library</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Roboto&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
-  <script src="https://kit.fontawesome.com/70e830e247.js" crossorigin="anonymous"></script>
-</head>
-<body>
-  <header>
-    <span class="book-icon"><i class="fas fa-book-open"></i></span>
-    <h1>Digital Book Library</h1>
-    <span class="book-icon"><i class="fas fa-book-open"></i></span>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/70e830e247.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <header>
+      <span class="book-icon"><i class="fas fa-book-open"></i></span>
+      <h1>Digital Book Library</h1>
+      <span class="book-icon"><i class="fas fa-book-open"></i></span>
+    </header>
 
-  <div class="main-container">
-
-  <div class="left">
-      <table class="table">
-        <tr class="theader">
-          <th  class="removeCell">Remove</th>
-          <th>Nr.</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Nr.of pages</th>
-          <th>Status</th>
-        </tr>
-      </table>
-  </div>
-
-  <div class="right">
-
-    <button class="button new-book" id="newBookBtn">Add Book</button>
-    <div class="modal" id="modal">
-  
-      <div class="form-container modal-content" id="formDiv">
-        <span class="close">&times;</span>
-        <form class="form" action="">
-
-          <div class="group-label-container">
-            <div class="group-label">
-              <label for="author">Author</label>
-              <input type="text" id="author" name="author" required>
-            </div>
-  
-            <div class="group-label">
-              <label for="title">Title</label>
-              <input type="text" id="title" name="title" required>
-            </div>
-  
-            <div class="group-label">
-              <label for="pages">Nr. of pages</label>
-              <input type="number" id="pages" name="pages" min="0" step="1" required>
-            </div>
-  
-            <div class="group-label">
-              <label for="readStatus">Have you read this book?</label>
-              <select id="readStatus" name="readStatus" required>
-                <option value="" disabled selected>Please select</option>
-                <option value="read">Read</option>
-                <option value="not read">Not read yet</option>
-              </select>
-            </div>
-          </div>
-        
-          <button id="submitBtn" value="Submit">Submit</button>
-        </form>
-  
+    <div class="main-container">
+      <div class="left">
+        <table class="table">
+          <tr class="theader">
+            <th class="removeCell">Remove</th>
+            <th>Nr.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Nr.of pages</th>
+            <th>Status</th>
+          </tr>
+        </table>
       </div>
-  
+
+      <div class="right">
+        <button class="button new-book" id="newBookBtn">Add Book</button>
+        <div class="modal" id="modal">
+          <div class="form-container modal-content" id="formDiv">
+            <span class="close">&times;</span>
+            <form class="form" novalidate action="">
+              <div class="group-label-container">
+                <div class="group-label">
+                  <label for="author">Author</label>
+                  <input
+                    type="text"
+                    id="author"
+                    name="author"
+                    minlength="3"
+                    placeholder="&nbsp;"
+                    required
+                  />
+                  <span class="error" aria-live="polite"></span>
+                </div>
+
+                <div class="group-label">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    minlength="3"
+                    placeholder="&nbsp;"
+                    required
+                  />
+                  <span class="error" aria-live="polite"></span>
+                </div>
+
+                <div class="group-label">
+                  <label for="pages">Nr. of pages</label>
+                  <input
+                    type="number"
+                    id="pages"
+                    name="pages"
+                    min="1"
+                    step="1"
+                    placeholder="&nbsp;"
+                    required
+                  />
+                  <span class="error" aria-live="polite"></span>
+                </div>
+
+                <div class="group-label">
+                  <label for="readStatus">Have you read this book?</label>
+                  <select id="readStatus" name="readStatus" required>
+                    <option value="" disabled selected>Please select</option>
+                    <option value="read">Read</option>
+                    <option value="not read">Not read yet</option>
+                  </select>
+                  <span class="error" aria-live="polite"></span>
+                </div>
+              </div>
+
+              <button id="submitBtn" type="submit" value="Submit">
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  
-  </div>
 
-  <footer>
-    <p>copyright &copy; Victor Lacatus 2021</p>
-  </footer>
-
-</body>
+    <footer>
+      <p>copyright &copy; Victor Lacatus 2021</p>
+    </footer>
+  </body>
 </html>

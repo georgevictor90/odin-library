@@ -4,15 +4,25 @@
   --powderblue: #a8dadc;
   --celadonblue: #457b9d;
   --prussianblue: #1d3557;
-  --fontfamily: 'Cinzel';
+  --fontfamily: "Cinzel";
 }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
-
-body, h1, h2, h3, h4, h5, h6, p, ol, ul {
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
   margin: 0;
   padding: 0;
   font-weight: normal;
@@ -23,7 +33,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: var(--honeydew);
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-size: 14px;
 }
 
@@ -41,11 +51,10 @@ header {
 }
 
 h1 {
-  font-family: 'Cinzel', serif;
+  font-family: "Cinzel", serif;
   font-size: 3rem;
   color: var(--prussianblue);
 }
-
 
 .main-container {
   display: flex;
@@ -78,14 +87,12 @@ h1 {
   width: 20%;
   height: 200px;
   background-color: var(--powderblue);
-  
 }
 
 .table {
-
-color: var(--honeydew);
-width: 80%;
-border-collapse: collapse;
+  color: var(--honeydew);
+  width: 80%;
+  border-collapse: collapse;
 }
 
 tr.theader {
@@ -99,15 +106,13 @@ tr {
 }
 
 td {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   font-weight: 400;
   border: 1 px solid black;
   width: 70px;
   height: 50px;
   text-align: center;
 }
-
-
 
 /* The Modal (background) */
 .modal {
@@ -119,8 +124,8 @@ td {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -131,15 +136,21 @@ td {
   border: 1px solid #888;
   width: fit-content; /* Could be more or less, depending on screen size */
   position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 
 /* Add Animation */
 @keyframes animatetop {
-  from {top: -300px; opacity: 0}
-  to {top: 0; opacity: 1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 /* The Close Button */
@@ -161,7 +172,7 @@ td {
   color: var(--red);
   font-size: 24px;
   font-weight: bold;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .far:hover,
@@ -175,14 +186,13 @@ th.removeCell {
   width: 10%;
 }
 
-
-.form>label,
-.form>input {
+.form > label,
+.form > input {
   padding: 3px 5px;
 }
 
 .form {
-  font-family: 'Cinzel';
+  font-family: "Cinzel";
   font-weight: 500;
   font-size: 1.2rem;
   width: 300px;
@@ -208,8 +218,6 @@ input {
   padding: 8px;
 }
 
-
-
 #submitBtn {
   display: block;
   width: 100%;
@@ -217,7 +225,7 @@ input {
   background-color: green;
   color: var(--honeydew);
   font-size: 1.2rem;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   border-radius: 10px;
   padding: 8px 0;
 }
@@ -232,16 +240,15 @@ footer {
   text-align: center;
 }
 
-
 #newBookBtn {
   background-color: var(--prussianblue);
   border: 2px solid var(--honeydew);
   border-radius: 30px;
   box-shadow: var(--red) 4px 4px 0 0;
-  color:var(--honeydew);
+  color: var(--honeydew);
   cursor: pointer;
   display: inline-block;
-  font-family: 'Roboto';
+  font-family: "Roboto";
   font-weight: 600;
   font-size: 16px;
   padding: 0 18px;
@@ -270,18 +277,17 @@ footer {
   }
 }
 
-td>div {
+td > div {
   display: grid;
   place-items: center;
   height: 100%;
   cursor: pointer;
-  font-family: monospace ;
+  font-family: monospace;
   font-weight: bold;
 }
 
 .red {
   background-color: var(--red);
-  
 }
 
 .green {
@@ -289,7 +295,7 @@ td>div {
 }
 
 @media screen and (max-width: 800px) {
-	.main-container {
+  .main-container {
     width: 95%;
     gap: 10px;
     margin-top: 60px;
@@ -301,10 +307,10 @@ td>div {
     font-size: 1.2rem;
     font-weight: bolder;
   }
-  .book-icon{
+  .book-icon {
     font-size: 1.5rem;
   }
-	.main-container {
+  .main-container {
     flex-direction: column-reverse;
     width: 95%;
     gap: 10px;
@@ -332,4 +338,41 @@ td>div {
     width: 100%;
     border-radius: 10px;
   }
+}
+
+input {
+  border: 2px solid #c3c3c3;
+}
+
+input:not(:placeholder-shown):not(:focus):invalid {
+  border: 2px solid red;
+  background: pink;
+}
+
+input:not(:focus):valid,
+select:not(:focus):valid {
+  border: 2px solid green;
+}
+
+select,
+select:focus,
+input:focus {
+  outline: none;
+}
+
+.error {
+  width: 100%;
+  padding: 0;
+
+  font-family: sans-serif;
+  font-size: 50%;
+  color: white;
+  background-color: #900;
+  border-radius: 0 0 5px 5px;
+
+  box-sizing: border-box;
+}
+
+.error.active {
+  padding: 0.5em;
 }
